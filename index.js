@@ -17,7 +17,7 @@ function petHouseValue(petHouse, dayValue, bigDogsQuantity, smallDogsQuantity) {
  * @returns {void}
  */
 
-function bestPetHouse(date, bigDogsQuantity, smallDogsQuantity) {
+function bestPetHouse(date, bigDogsQuantity = 0, smallDogsQuantity = 0) {
   const formatedDate = trasnformDate(date);
 
   let dayValue;
@@ -52,14 +52,36 @@ function bestPetHouse(date, bigDogsQuantity, smallDogsQuantity) {
   );
 
   const minPrice = Math.min(mcf.price, vr.price, cc.price);
+  let bestOption;
 
-  if (minPrice === mcf.price && minPrice === vr.price) {
-    mcf.location < vr.location
-      ? console.log(
-          `Melhor Preço: Meu canino feliz R$${minPrice}, a ${mcf.location}km`
-        )
-      : console.log(`Melhor Preço: Vai Rex R$${minPrice}, a ${vr.location}km`);
+  if (minPrice === mcf.price) {
+    if (minPrice === vr.price) {
+      bestOption = mcf.location < vr.location ? "Meu canino feliz" : "Vai Rex";
+    } else if (minPrice === cc.price) {
+      bestOption =
+        mcf.location < cc.location ? "Meu canino feliz" : "ChowChawgas";
+    } else {
+      bestOption = "Meu canino feliz";
+    }
+  } else if (minPrice === vr.price) {
+    if (minPrice === cc.price) {
+      bestOption = vr.location < cc.location ? "Vai Rex" : "ChowChawgas";
+    } else {
+      bestOption = "Vai Rex";
+    }
+  } else {
+    bestOption = "ChowChawgas";
   }
+
+  console.log(
+    `Melhor Preço: ${bestOption} R$${minPrice}, a ${
+      bestOption === "Meu canino feliz"
+        ? mcf.location
+        : bestOption === "Vai Rex"
+        ? vr.location
+        : cc.location
+    }km`
+  );
 }
 
-bestPetHouse("09/08/2023", 10, 1);
+bestPetHouse("09/08/2023", 10, 20);
