@@ -1,3 +1,5 @@
+//! Shape de cada petHouse
+
 const meuCaninoFeliz = {
   locationInKm: 2,
   prices: {

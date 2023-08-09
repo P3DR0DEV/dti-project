@@ -1,13 +1,6 @@
 const { trasnformDate } = require("./util/transformDate");
+const { petHouseValue } = require("./util/petHouseValue");
 const { chowChawgas, meuCaninoFeliz, vaiRex } = require("./util/petHouses");
-
-function petHouseValue(petHouse, dayValue, bigDogsQuantity, smallDogsQuantity) {
-  const price =
-    petHouse.prices[dayValue].bigDogsPrice * bigDogsQuantity +
-    petHouse.prices[dayValue].smallDogsPrice * smallDogsQuantity;
-
-  return { price, location: petHouse.locationInKm };
-}
 
 /**
  *
@@ -20,6 +13,7 @@ function petHouseValue(petHouse, dayValue, bigDogsQuantity, smallDogsQuantity) {
 function bestPetHouse(date, bigDogsQuantity = 0, smallDogsQuantity = 0) {
   const formatedDate = trasnformDate(date);
 
+  //! Recebe o dia da semana e checa se é um final de semana ou Dia Util
   let dayValue;
   if ((formatedDate.getDay() === 0) | (formatedDate.getDay() === 6)) {
     dayValue = "weekend";
@@ -27,7 +21,7 @@ function bestPetHouse(date, bigDogsQuantity = 0, smallDogsQuantity = 0) {
     dayValue = "businessDay";
   }
 
-  // mcf = meu canino feliz
+  //! mcf = meu canino feliz
   const mcf = petHouseValue(
     meuCaninoFeliz,
     dayValue,
@@ -35,7 +29,7 @@ function bestPetHouse(date, bigDogsQuantity = 0, smallDogsQuantity = 0) {
     smallDogsQuantity
   );
 
-  // vr = vaiRex
+  //! vr = vaiRex
   const vr = petHouseValue(
     vaiRex,
     dayValue,
@@ -43,7 +37,7 @@ function bestPetHouse(date, bigDogsQuantity = 0, smallDogsQuantity = 0) {
     smallDogsQuantity
   );
 
-  // cc = chowChawgas
+  //! cc = chowChawgas
   const cc = petHouseValue(
     chowChawgas,
     dayValue,
@@ -51,9 +45,11 @@ function bestPetHouse(date, bigDogsQuantity = 0, smallDogsQuantity = 0) {
     smallDogsQuantity
   );
 
+  //! Calcula o menor preço entre todos os resultados
   const minPrice = Math.min(mcf.price, vr.price, cc.price);
   let bestOption;
 
+  //! Logica para checar qual é a melhor PetHouse
   if (minPrice === mcf.price) {
     if (minPrice === vr.price) {
       bestOption = mcf.location < vr.location ? "Meu canino feliz" : "Vai Rex";
@@ -84,4 +80,4 @@ function bestPetHouse(date, bigDogsQuantity = 0, smallDogsQuantity = 0) {
   );
 }
 
-bestPetHouse("09/08/2023", 10, 20);
+bestPetHouse("12/08/2023", 2, 1);
