@@ -26,6 +26,17 @@ Para o funcionamento correto do programa, o usuário deve levar em conta que, ca
 - O número de cachorros inserido será aceito tanto do tipo number, ou seja 1, 2, 3, etc, ou do tipo string, ou seja "1", "2", "3", etc.
 - Números escritos por extenso não serão aceitos. Exemplo: "01/01/2023", "tres", "quatro".
 
-Por fim, a execução do sistema será realizada com base nas seguintes instruções: Para funcionar o sistema, Eduardo deverá colocar o dia no padrão brasileiro "24/02/2002", seguido de a quantidade de cachorros grandes e cachorros pequenos na inicialização da função BestPetHouse, e rodar o programa utilizando o comando node index.js no terminal.
+Por fim, a execução do sistema será realizada com base nas seguintes instruções:
 
-Exemplo: bestPetHouse("1/1/2023", 2, 1);
+- O projeto foi feito em JavaScript, caso não possua o Node instalado, siga as instruções disponíveis em: [NodeJS](https://nodejs.org/pt-br)
+- Baixar ou Clonar este repositório GIT
+- Na pasta inicial, rodar o código:
+
+  ```
+  node index.js
+  ```
+
+- Para funcionar o sistema, Eduardo deverá colocar o dia no padrão brasileiro "24/02/2002", seguido de a quantidade de cachorros grandes e cachorros pequenos na inicialização da função BestPetHouse.
+  ```
+  bestPetHouse("1/1/2023", 2, 1);
+  ```
