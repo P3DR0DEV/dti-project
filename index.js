@@ -47,12 +47,28 @@ function bestPetHouse(date, bigDogsQuantity = 0, smallDogsQuantity = 0) {
 
   //! Calcula o menor preço entre todos os resultados
   const minPrice = Math.min(mcf.price, vr.price, cc.price);
+
+  //! Menor localização em KM para caso os 3 derem o mesmo preço, o melhor ser aquele que está mais proximo do canil
+  const minLocation = Math.min(mcf.location, vr.location, cc.location);
+  let bestLocation;
+  if (minLocation === mcf.location) {
+    bestLocation = "Meu canino feliz";
+  } else {
+    if (minLocation === vr.location) {
+      bestLocation = "Vai Rex";
+    } else {
+      bestLocation = "ChowChawgas";
+    }
+  }
   let bestOption;
 
   //! Logica para checar qual é a melhor PetHouse
   if (minPrice === mcf.price) {
     if (minPrice === vr.price) {
-      bestOption = mcf.location < vr.location ? "Meu canino feliz" : "Vai Rex";
+      minPrice === cc.price
+        ? bestLocation
+        : (bestOption =
+            mcf.location < vr.location ? "Meu canino feliz" : "Vai Rex");
     } else if (minPrice === cc.price) {
       bestOption =
         mcf.location < cc.location ? "Meu canino feliz" : "ChowChawgas";
