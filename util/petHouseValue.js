@@ -9,8 +9,8 @@
  */
 function petHouseValue(petHouse, dayValue, bigDogsQuantity, smallDogsQuantity) {
   const price =
-    petHouse.prices[dayValue].bigDogsPrice * bigDogsQuantity +
-    petHouse.prices[dayValue].smallDogsPrice * smallDogsQuantity;
+    petHouse.prices[dayValue].bigDogsPrice * Number(bigDogsQuantity) +
+    petHouse.prices[dayValue].smallDogsPrice * Number(smallDogsQuantity);
 
   return { price, location: petHouse.locationInKm };
 }
